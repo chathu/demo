@@ -1,0 +1,489 @@
+-- phpMyAdmin SQL Dump
+-- version 3.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Jan 31, 2015 at 06:15 AM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.4.3
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `softcare_apps`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assest_register_business_database`
+--
+
+CREATE TABLE IF NOT EXISTS `assest_register_business_database` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `org_id` int(11) NOT NULL,
+  `AssetID` varchar(11) DEFAULT NULL,
+  `Owner` varchar(255) DEFAULT NULL,
+  `Custodian` varchar(255) DEFAULT NULL,
+  `Users` varchar(255) DEFAULT NULL,
+  `Location` varchar(255) DEFAULT NULL,
+  `SysAdmin` varchar(255) DEFAULT NULL,
+  `LifeCycle` varchar(255) DEFAULT NULL,
+  `BusinessRequirements` varchar(255) DEFAULT NULL,
+  `TechnicalContact` varchar(255) DEFAULT NULL,
+  `Vendor` varchar(255) DEFAULT NULL,
+  `ExpectedLife` varchar(255) DEFAULT NULL,
+  `ExpiredLife` varchar(255) DEFAULT NULL,
+  `MaintenanceStatus` varchar(255) DEFAULT NULL,
+  `Purpose` varchar(255) DEFAULT NULL,
+  `Dependency` varchar(255) DEFAULT NULL,
+  `BackupSchedule` varchar(255) DEFAULT NULL,
+  `BackupLocation` varchar(255) DEFAULT NULL,
+  `ConfidentialityRequirements` varchar(255) DEFAULT NULL,
+  `IntegrityRequirements` varchar(255) DEFAULT NULL,
+  `AvailabilityRequirements` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data for table `assest_register_business_database`
+--
+
+INSERT INTO `assest_register_business_database` (`id`, `org_id`, `AssetID`, `Owner`, `Custodian`, `Users`, `Location`, `SysAdmin`, `LifeCycle`, `BusinessRequirements`, `TechnicalContact`, `Vendor`, `ExpectedLife`, `ExpiredLife`, `MaintenanceStatus`, `Purpose`, `Dependency`, `BackupSchedule`, `BackupLocation`, `ConfidentialityRequirements`, `IntegrityRequirements`, `AvailabilityRequirements`) VALUES
+(3, 1, 'dsafdgd', 'dfdfsa', 'fd', 'df', 'hjg', 'ghj', 'gjhj', 'hjj', 'hjh', 'jj', 'jh', 'h', 'jh', 'h', 'hj', 'h', 'scfasfasfdasf', '2', '2', '2'),
+(5, 2, 'fdgfs', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(6, 2, 'fdgds', 'fgsdf', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(7, 1, 'argg', 'hsdfh', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(8, 2, 'xv', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(9, 4, 'cvxzv', 'fvgDAF', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(10, 1, '1 session', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(11, 2, '2nd session', 'efdf', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(12, 4, '3rd session', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(13, 0, 'xz', 'vcxv', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(14, 0, 'sfeddf', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(15, 5, 'dsa', 'dsa', 'ds', 'ddsa', 'das', 'ds', 'dsa', 'dsa', '', '', '', 'dsa', 'dsa', 'dsa', 'dsa', 'dsa', 'dsa', 'dsa', 'ds', 'dsa');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assest_register_digital_assest`
+--
+
+CREATE TABLE IF NOT EXISTS `assest_register_digital_assest` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `org_id` int(11) DEFAULT NULL,
+  `AssestTD` varchar(20) DEFAULT NULL,
+  `Owner` varchar(100) DEFAULT NULL,
+  `Custodian` varchar(255) DEFAULT NULL,
+  `Users` varchar(255) DEFAULT NULL,
+  `Location` varchar(255) DEFAULT NULL,
+  `StorageDetails` varchar(255) DEFAULT NULL,
+  `Classification` varchar(255) DEFAULT NULL,
+  `LifeCycle` varchar(255) DEFAULT NULL,
+  `DisposalMethod` varchar(255) DEFAULT NULL,
+  `BackupSchedule` varchar(255) DEFAULT NULL,
+  `ConfidentialityRequirements` int(11) DEFAULT NULL,
+  `IntegrityRequirements` int(11) DEFAULT NULL,
+  `AvailabilityRequirements` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+
+--
+-- Dumping data for table `assest_register_digital_assest`
+--
+
+INSERT INTO `assest_register_digital_assest` (`id`, `org_id`, `AssestTD`, `Owner`, `Custodian`, `Users`, `Location`, `StorageDetails`, `Classification`, `LifeCycle`, `DisposalMethod`, `BackupSchedule`, `ConfidentialityRequirements`, `IntegrityRequirements`, `AvailabilityRequirements`) VALUES
+(4, 1, 'dsa', 'sda', 'sadf', 'd', 'ASD', 'AS', 'SAD', 'SA', 'AS', 'SA', 1, 1, 1),
+(6, 2, '', 'DG', 'DFG', 'DFSGG', 'DF', 'GF', 'FG', 'DFG', 'FG', 'FG', 7, 7, 7),
+(21, 4, 'wqe', 'eqwe', 'er', 'ewr', 'we', 'wr', 'ewr', 'ewr', 'wer', 'wreq', 5, 5, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assest_register_source_code`
+--
+
+CREATE TABLE IF NOT EXISTS `assest_register_source_code` (
+  `UID` int(11) NOT NULL,
+  PRIMARY KEY (`UID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `elfinder_file`
+--
+
+CREATE TABLE IF NOT EXISTS `elfinder_file` (
+  `id` int(7) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` int(7) unsigned NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `content` longblob NOT NULL,
+  `size` int(10) unsigned NOT NULL DEFAULT '0',
+  `mtime` int(10) unsigned NOT NULL,
+  `mime` varchar(256) NOT NULL DEFAULT 'unknown',
+  `read` enum('1','0') NOT NULL DEFAULT '1',
+  `write` enum('1','0') NOT NULL DEFAULT '1',
+  `locked` enum('1','0') NOT NULL DEFAULT '0',
+  `hidden` enum('1','0') NOT NULL DEFAULT '0',
+  `width` int(5) NOT NULL,
+  `height` int(5) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `parent_name` (`parent_id`,`name`),
+  KEY `parent_id` (`parent_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `elfinder_file`
+--
+
+INSERT INTO `elfinder_file` (`id`, `parent_id`, `name`, `content`, `size`, `mtime`, `mime`, `read`, `write`, `locked`, `hidden`, `width`, `height`) VALUES
+(1, 0, 'DATABASE', '', 0, 0, 'directory', '1', '1', '0', '0', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gap_analysis`
+--
+
+CREATE TABLE IF NOT EXISTS `gap_analysis` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `ISO_clause` varchar(10) DEFAULT NULL,
+  `ISMS` varchar(200) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `comments` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+
+--
+-- Dumping data for table `gap_analysis`
+--
+
+INSERT INTO `gap_analysis` (`id`, `ISO_clause`, `ISMS`, `status`, `comments`) VALUES
+(1, '4.1', 'The organization shall establish, implement, operate, monitor, review, maintain and improve a documented ISMS', '3', 'cbzxc'),
+(7, '4.2.1', 'Define the scope and boundaries of the ISMS', '2', 'dsd'),
+(11, '4.2.1 (b)', 'Define an ISMS policy', '3', 'safsf'),
+(12, '4.2.1 (c)', 'Define the risk assessment approach', '2', ''),
+(13, '4.2.1 (d)', 'Identify the risks', '1', 'xnzfghsfzh'),
+(14, '4.2.1 (e)', 'Analyse and evaluate the risks', '2', ''),
+(15, '4.2.1 (f)', 'Identify and evaluate options for the treatment of risks', '3', ''),
+(16, '4.2.1 (g)', 'Select control objectives and controls for the treatment of risks', '2', 'dasadasd'),
+(17, '4.2.1 (h)', 'Obtain management approval of the proposed residual risks', '1', 'dsadasd'),
+(18, '4.2.1 (i)', 'Obtain management authorization to implement and operate the ISMS', '3', ''),
+(19, '4.2.1 (j)', 'Prepare a Statement of Applicability [see the SoA spreadsheet]', '3', ''),
+(20, '4.2.2 (a)', 'Formulate a risk treatment plan', '3', ''),
+(21, '4.2.2 (b)', 'Implement the risk treatment plan in order to achieve the identified control objectives', '3', ''),
+(22, '4.2.2 (c)', 'Implement controls selected in 4.2.1g to meet the control objectives', NULL, NULL),
+(23, '4.2.2 (d)', 'Define how to measure the effectiveness of the selected controls or groups of controls and specify how these measurements are to be used to assess control\r\n\r\neffectiveness to produce comparable and re', '2', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `organization`
+--
+
+CREATE TABLE IF NOT EXISTS `organization` (
+  `org_id` int(11) NOT NULL AUTO_INCREMENT,
+  `org_name` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `telephone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`org_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `organization`
+--
+
+INSERT INTO `organization` (`org_id`, `org_name`, `address`, `telephone`, `email`) VALUES
+(1, 'afaf', 'saf', 'sfa', 'saf'),
+(2, 'chathu', '124, mihidupura, meepilimana', '4715791110', 'cpremium3000@gmail.com'),
+(3, 'test ', 'sa', '', ''),
+(4, 'Test', 'dsa', '232123', 'dsadas@gmail.com'),
+(5, 'Sithuvili Concepts', 'Nittambuwa', '0772141009', 'sithuviliprivatelimited@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `scope`
+--
+
+CREATE TABLE IF NOT EXISTS `scope` (
+  `id` int(15) NOT NULL AUTO_INCREMENT,
+  `org_id` int(11) NOT NULL,
+  `business_function` varchar(35) NOT NULL,
+  `purpose` varchar(500) NOT NULL,
+  `status` varchar(8) NOT NULL,
+  `reson` varchar(500) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+
+--
+-- Dumping data for table `scope`
+--
+
+INSERT INTO `scope` (`id`, `org_id`, `business_function`, `purpose`, `status`, `reson`) VALUES
+(13, 2, 'Information Technology', 'dsfdsdszf', 'Include', 'dfs'),
+(18, 2, 'Distribution and Logistics', 'df', 'Include', 'DFA'),
+(19, 1, 'Sales and Marketing', 'DF', 'Include', 'DSF'),
+(20, 4, 'Compliance', 'dfs', 'Include', 'dsf'),
+(22, 2, 'Operations', 'ZCNBVMN', 'Exclude', 'XZV'),
+(23, 4, 'Operations', 'vv', 'Include', 'CV Zx'),
+(24, 2, 'Distribution and Logistics', '2nd session', '', ''),
+(27, 1, 'Distribution and Logistics', '1st session', '', ''),
+(28, 4, 'Sales and Marketing', '3rd session', '', ''),
+(29, 2, 'Finance', 'test', '', ''),
+(30, 0, 'Operations', 'hgfjkhfjkg', '', ''),
+(31, 0, 'Sales and Marketing', 'fsdfqwr', 'Exclude', 'wqrqewrqw'),
+(32, 0, 'Sales and Marketing', '', 'Exclude', ''),
+(33, 3, 'Finance', '', 'Include', ''),
+(34, 0, 'Human Resources', 'dsad', 'Include', 'dsad'),
+(35, 4, 'Human Resources', 'dsa', 'Include', 'dsad'),
+(36, 2, 'Compliance', 'dsd', 'Include', 'dsadsads'),
+(37, 5, 'Information Technology', 'Purpose', 'Include', 'This is a reason');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(50) DEFAULT NULL,
+  `lastname` varchar(50) DEFAULT NULL,
+  `phone` varchar(200) DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `phone`, `email`) VALUES
+(1, 'Pawan', 'Muhandiram', '(000)000-0000', 'name1@gmail.com'),
+(4, 'fname2', 'lname2', '(000)000-0000', 'name2@gmail.com'),
+(5, 'fname3', 'lname3', '(000)000-0000', 'name3@gmail.com'),
+(7, 'fname4', 'lname4', '(000)000-0000', 'name4@gmail.com'),
+(8, 'fname5', 'lname5', '(000)000-0000', 'name5@gmail.com'),
+(9, 'fname6', 'lname6', '(000)000-0000', 'name6@gmail.com'),
+(10, 'fname7', 'lname7', '(000)000-0000', 'name7@gmail.com'),
+(11, 'fname8', 'lname8', '(000)000-0000', 'name8@gmail.com'),
+(12, 'fname9', 'lname9', '(000)000-0000', 'name9@gmail.com'),
+(13, 'fname10', 'lname10', '(000)000-0000', 'name10@gmail.com'),
+(14, 'fre', 'wgw', '', ''),
+(15, 'xzc', '', '', ''),
+(16, '', '', '', ''),
+(17, '', '', '', ''),
+(18, 'qw', 'ww', 'ww', 'asd@jhkj.com'),
+(21, 'Saman', 'Kumara', '0288299', 'saman@gmail.com'),
+(22, 'ds', 'ds', '213213', 'dsadas@gmail.com'),
+(23, 'da', 'ds', 'ds', 'dsadas@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_has_user_type`
+--
+
+CREATE TABLE IF NOT EXISTS `user_has_user_type` (
+  `user_has_user_type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `user_type_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`user_has_user_type_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `user_has_user_type`
+--
+
+INSERT INTO `user_has_user_type` (`user_has_user_type_id`, `user_id`, `user_type_id`) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(4, 21, 1),
+(5, 22, 1),
+(6, 23, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_login`
+--
+
+CREATE TABLE IF NOT EXISTS `user_login` (
+  `user_login_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(225) DEFAULT NULL,
+  `password` varchar(225) DEFAULT NULL,
+  `is_active` varchar(40) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`user_login_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `user_login`
+--
+
+INSERT INTO `user_login` (`user_login_id`, `username`, `password`, `is_active`, `user_id`) VALUES
+(1, 'test', 'test', 'true', 1),
+(2, 'saman', 'saman', 'true', 21),
+(3, 'ds', 'ds', 'true', 22),
+(4, 'da', 'da', 'true', 23);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_session_management`
+--
+
+CREATE TABLE IF NOT EXISTS `user_session_management` (
+  `session_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `date` varchar(55) NOT NULL,
+  `time` varchar(55) NOT NULL,
+  `activity` varchar(225) NOT NULL,
+  PRIMARY KEY (`session_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=79 ;
+
+--
+-- Dumping data for table `user_session_management`
+--
+
+INSERT INTO `user_session_management` (`session_id`, `user_id`, `date`, `time`, `activity`) VALUES
+(1, 1, '2015/01/27', '03:55:01am', 'Login in to the System'),
+(2, 1, '2015/01/27', '03:57:11am', 'Logout From the System'),
+(3, 1, '2015/01/27', '03:57:47am', 'Login in to the System'),
+(4, 1, '2015/01/27', '03:57:49am', 'Logout From the System'),
+(5, 1, '2015/01/27', '03:59:39am', 'Login in to the System'),
+(6, 1, '2015/01/27', '03:59:53am', 'Logout From the System'),
+(7, 1, '2015/01/27', '04:01:09am', 'Login in to the System'),
+(8, 1, '2015/01/27', '04:01:18am', 'Logout From the System'),
+(9, 1, '2015/01/27', '04:02:45am', 'Login in to the System'),
+(10, 1, '2015/01/27', '04:02:54am', 'Logout From the System'),
+(11, 1, '2015/01/27', '04:05:08am', 'Login in to the System'),
+(12, 1, '2015/01/27', '04:05:15am', 'Logout From the System'),
+(13, 1, '2015/01/27', '04:06:21am', 'Login in to the System'),
+(14, 1, '2015/01/27', '04:06:33am', 'Logout From the System'),
+(15, 1, '2015/01/27', '04:09:39am', 'Login in to the System'),
+(16, 1, '2015/01/27', '04:09:46am', 'Logout From the System'),
+(17, 1, '2015/01/27', '04:11:01am', 'Login in to the System'),
+(18, 1, '2015/01/27', '04:11:03am', 'Logout From the System'),
+(19, 1, '2015/01/27', '04:11:51am', 'Login in to the System'),
+(20, 1, '2015/01/27', '04:11:53am', 'Logout From the System'),
+(21, 1, '2015/01/27', '04:56:18am', 'Login in to the System'),
+(22, 1, '2015/01/27', '04:56:46am', 'Logout From the System'),
+(23, 1, '2015/01/27', '04:58:12am', 'Login in to the System'),
+(24, 1, '2015/01/27', '04:58:17am', 'Logout From the System'),
+(25, 1, '2015/01/27', '04:58:21am', 'Login in to the System'),
+(26, 1, '2015/01/27', '05:06:07am', 'Logout From the System'),
+(27, 1, '2015/01/27', '05:07:38am', 'Login in to the System'),
+(28, 1, '2015/01/27', '05:12:24am', 'Logout From the System'),
+(29, 1, '2015/01/27', '05:16:13am', 'Login in to the System'),
+(30, 1, '2015/01/27', '05:17:13am', 'Logout From the System'),
+(31, 1, '2015/01/27', '05:31:46am', 'Login in to the System'),
+(32, 1, '2015/01/27', '05:42:25am', 'Logout From the System'),
+(33, 1, '2015/01/27', '05:47:17am', 'Login in to the System'),
+(34, 1, '2015/01/27', '05:47:21am', 'Logout From the System'),
+(35, 1, '2015/01/27', '05:48:13am', 'Login in to the System'),
+(36, 1, '2015/01/27', '05:48:15am', 'Logout From the System'),
+(37, 1, '2015/01/27', '05:48:52am', 'Login in to the System'),
+(38, 1, '2015/01/27', '05:48:56am', 'Logout From the System'),
+(39, 1, '2015/01/27', '05:50:09am', 'Login in to the System'),
+(40, 1, '2015/01/27', '05:50:12am', 'Logout From the System'),
+(41, 1, '2015/01/27', '05:52:24am', 'Login in to the System'),
+(42, 1, '2015/01/27', '05:55:01am', 'Logout From the System'),
+(43, 1, '2015/01/27', '05:55:06am', 'Login in to the System'),
+(44, 1, '2015/01/27', '05:55:39am', 'Logout From the System'),
+(45, 1, '2015/01/27', '05:55:57am', 'Login in to the System'),
+(46, 1, '2015/01/27', '05:56:58am', 'Logout From the System'),
+(47, 1, '2015/01/27', '06:11:57am', 'Login in to the System'),
+(48, 1, '2015/01/27', '06:12:00am', 'Logout From the System'),
+(49, 1, '2015/01/27', '07:15:30am', 'Login in to the System'),
+(50, 1, '2015/01/27', '07:15:34am', 'Logout From the System'),
+(51, 21, '2015/01/27', '08:19:40am', 'Login in to the System'),
+(52, 21, '2015/01/27', '08:19:50am', 'Logout From the System'),
+(53, 21, '2015/01/27', '08:28:57am', 'Login in to the System'),
+(54, 21, '2015/01/27', '08:46:26am', 'Logout From the System'),
+(55, 23, '2015/01/27', '08:51:20am', 'Login in to the System'),
+(56, 23, '2015/01/27', '08:51:28am', 'Logout From the System'),
+(57, 23, '2015/01/27', '08:51:34am', 'Login in to the System'),
+(58, 23, '2015/01/27', '08:51:36am', 'Logout From the System'),
+(59, 23, '2015/01/27', '08:51:49am', 'Login in to the System'),
+(60, 23, '2015/01/27', '08:51:53am', 'Logout From the System'),
+(61, 23, '2015/01/27', '08:56:18am', 'Login in to the System'),
+(62, 23, '2015/01/27', '08:56:22am', 'Logout From the System'),
+(63, 23, '2015/01/27', '08:57:03am', 'Login in to the System'),
+(64, 23, '2015/01/27', '10:15:21am', 'Logout From the System'),
+(65, 22, '2015/01/27', '10:15:50am', 'Login in to the System'),
+(66, 22, '2015/01/27', '10:15:54am', 'Logout From the System'),
+(67, 1, '2015/01/27', '10:15:58am', 'Login in to the System'),
+(68, 1, '2015/01/27', '10:16:03am', 'Logout From the System'),
+(69, 1, '2015/01/27', '01:29:44pm', 'Login in to the System'),
+(70, 1, '2015/01/27', '01:30:09pm', 'Logout From the System'),
+(71, 23, '2015/01/27', '01:30:43pm', 'Login in to the System'),
+(72, 23, '2015/01/27', '01:31:06pm', 'Logout From the System'),
+(73, 1, '2015/01/28', '02:00:59pm', 'Login in to the System'),
+(74, 1, '2015/01/28', '02:01:16pm', 'Logout From the System'),
+(75, 22, '2015/01/28', '02:01:28pm', 'Login in to the System'),
+(76, 22, '2015/01/28', '02:01:33pm', 'Logout From the System'),
+(77, 1, '2015/01/29', '07:42:49am', 'Login in to the System'),
+(78, 1, '2015/01/29', '07:43:00am', 'Logout From the System');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_types`
+--
+
+CREATE TABLE IF NOT EXISTS `user_types` (
+  `user_type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_type` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`user_type_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `user_types`
+--
+
+INSERT INTO `user_types` (`user_type_id`, `user_type`) VALUES
+(1, 'Admin'),
+(2, 'Editor'),
+(3, 'Contributor');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `www`
+--
+
+CREATE TABLE IF NOT EXISTS `www` (
+  `aaa` varchar(255) DEFAULT NULL,
+  `bbb` varchar(255) DEFAULT NULL,
+  `ccc` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `www`
+--
+
+INSERT INTO `www` (`aaa`, `bbb`, `ccc`) VALUES
+('', '', ''),
+('', '', ''),
+('', '', ''),
+('', '', ''),
+('sfa', 'sfas', 'saf'),
+('df', 'safsaf', ''),
+('df', 'safsaf', ''),
+('df', 'sss', ''),
+('fgj', 'gfh', 'gh');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
