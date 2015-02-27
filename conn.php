@@ -1,6 +1,6 @@
 <?php
 
-$conn = @mysql_connect('localhost','softcares_apps','softcares_apps');
+$conn = @mysql_connect('localhosts','softcares_apps','softcares_apps');
 if (!$conn) {
 	die('Could not connect: ' . mysql_error());
 }
