@@ -25,10 +25,20 @@ if ($results) {
         $sql2 = "INSERT INTO user_has_user_type (user_id, user_type_id) VALUES ('$user_id', '1')";
         $results3 = @mysql_query($sql2);
         if ($results3) {
-            $sql3 = "INSERT INTO user_login (username, password, is_active, user_id) VALUES ('$username','$new_password','true','$user_id')";
+
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < 10; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            
+            mail($row['email'], "Login Pass Code", "Your Login Code Is :- ".$randomString);
+
+            $sql3 = "INSERT INTO user_login (username, password, is_active, user_id,is_first,generate_code) VALUES ('$username','$new_password','true','$user_id','true','$randomString')";
             $results4 = @mysql_query($sql3);
             if ($results4) {
-                echo 'if success';
+                echo 'success';
             } else {
                 
             }
