@@ -1,3 +1,7 @@
+﻿<?php
+include '../conn.php';
+include('../session.php');
+?>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>       <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -17,7 +21,7 @@
 
         <link rel="stylesheet" href="../assets/css/theme.css">
 
-
+        <link rel="stylesheet" href="style.css"/>
 
         <link href="../css/easyui.css" rel="stylesheet" type="text/css">
         <link href="../css/demo.css"  rel="stylesheet" type="text/css">
@@ -32,66 +36,6 @@
         <script type="text/javascript" src="../assets/js/style-switcher.js"></script>
 
 
-
-
-        <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-        <script type="text/javascript">
-            var url;
-            function newUser(){
-                $('#dlg').dialog('open').dialog('setTitle','New Asset');
-                $('#fm').form('clear');
-                url = 'save_user.php';
-            }
-            function editUser(){
-                var row = $('#dg').datagrid('getSelected');
-                if (row){
-                    $('#dlg').dialog('open').dialog('setTitle','Edit Asset');
-                    $('#fm').form('load',row);
-                    url = 'update_user.php?id='+row.id;
-                }
-            }
-            function saveUser(){
-                $('#fm').form('submit',{
-                    url: url,
-                    onSubmit: function(){
-                        return $(this).form('validate');
-                    },
-                    success: function(result){
-                        var result = eval('('+result+')');
-                        if (result.success){
-                            $('#dlg').dialog('close');		// close the dialog
-                            $('#dg').datagrid('reload');	// reload the user data
-                        } else {
-                            $.messager.show({
-                                title: 'Error',
-                                msg: result.msg
-                            });
-                        }
-                    }
-                });
-            }
-            function removeUser(){
-                var row = $('#dg').datagrid('getSelected');
-                if (row){
-                    $.messager.confirm('Confirm','Are you sure you want to remove this asset?',function(r){
-                        if (r){
-                            $.post('remove_user.php',{id:row.id},function(result){
-                                if (result.success){
-                                    $('#dg').datagrid('reload');	// reload the user data
-                                } else {
-                                    $.messager.show({	// show error message
-                                        title: 'Error',
-                                        msg: result.msg
-                                    });
-                                }
-                            },'json');
-                        }
-                    });
-                }
-            }
-           
-            
-        </script>
         <script type="text/javascript">
             
                 
@@ -234,8 +178,28 @@
                     
                 
             }
+            
+            function generate_scope_report(org_id){
+                $.ajaxSetup ({
+                    cache: false
+                });
+                
+                $.post("generate_scope_report.php",{
+                    org_id:org_id
+                    
+                },function(res){
+                    document.getElementById("search_result_scope_report").innerHTML = res;
+                    
+                } , 'text');
+                    
+                
+            }
+            
                 
         </script>
+
+
+
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -247,36 +211,14 @@
         <!-- from my works -->
 
 
-        <style type="text/css">
-            #fm {
-                margin: 0;
-                padding: 10px 30px;
-            }
-            .ftitle {
-                font-size: 14px;
-                font-weight: bold;
-                color: #666;
-                padding: 5px 0;
-                margin-bottom: 10px;
-                border-bottom: 1px solid #ccc;
-            }
-            .fitem {
-                margin-bottom: 5px;
-            }
-            .fitem label {
-                display: inline-block;
-                width: 80px;
-            }
-        </style>
+
+
 
         <!-- end of from my works -->
 
     </head>
-    <body >
-       <?php
-        include '../conn.php';
-        include '../session.php';
-        
+    <body>
+        <?php
         $ses_sql1 = mysql_query("select * from user_login where username='$login_session'", $conn);
         $row1 = mysql_fetch_assoc($ses_sql1);
         $result1 = $row1['user_id'];
@@ -358,7 +300,7 @@
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="#" onclick="create_user_registration()">Create User</a></li>
-                                                <li><a href="#" onclick="delete_user()">Delete User</a></li>
+                                                <li><a href="../user_management/delete_user.php" >Delete User</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown ">
@@ -411,7 +353,7 @@
                     <div class="container-fluid">
                         <div class="row-fluid">
                             <div class="span12">
-                                <h3><i class="icon-check-empty"></i> Statement of Applicability </h3>
+                                <h3><i class="icon-check-empty"></i> Dashboard</h3>
                             </div>
                         </div>
                         <!-- /.row-fluid -->
@@ -454,8 +396,8 @@
                 <!-- /.user-media -->
                 <!-- #menu -->
                 <ul id="menu" class="unstyled accordion collapse in">
-                    <li class="accordion-group">
-                        <a data-parent="#menu" href="../dashboard/dashboard.php" data-toggle="collapse" class="accordion-toggle" data-target="#dashboard-nav">
+                    <li class="accordion-group active">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#dashboard-nav">
                             <i ></i> Dashboard <span
                                 class="label label-inverse pull-right">2</span>
                         </a>
@@ -482,7 +424,7 @@
                                 class="label label-inverse pull-right">8</span>
                         </a>
                         <ul class="collapse " id="component-nav">
-                           <li><a href="../business_db/business_asset.php"><i class="icon-angle-right"></i> Business Database </a></li>
+                            <li><a href="../business_db/business_asset.php"><i class="icon-angle-right"></i> Business Database </a></li>
                             <li><a href="../digital_asset/digital_asset.php"><i class="icon-angle-right"></i> Digital Asset</a></li>
                             <li><a href="#"><i class="icon-angle-right"></i> Source Code</a></li>
                             <li><a href="#"><i class="icon-angle-right"></i> Software</a></li>
@@ -500,14 +442,14 @@
 
 
                     <li><a href="#"><i ></i> Risk Assestment </a></li>
-                    <li class="accordion-group active"><a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#soa-nav" > <i></i>Statement of Applicability <span
+                    <li class="accordion-group"><a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#soa-nav" > <i></i>Statement of Applicability <span
                                 class="label label-inverse pull-right">2</span> </a>
                         <ul class="collapse " id="soa-nav">
                             <li><a href="../SOA/isms.php"><i class="icon-angle-right"></i> ISMS Mandatory</a></li>
                             <li><a href="#"><i class="icon-angle-right"></i> Support Utilities</a></li>
                         </ul>
                     </li>
-                    
+
                     <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#er-nav">
                             <i></i> User Management <span
@@ -534,140 +476,52 @@
                         <!-- .inner -->
                         <div class="span12 inner">
                             <!-- content is here -->
-                            <h2>Mandatory requirement for the ISMS</h2>
+                            
+                            <table>
+                                <tr>
+                                    <td>Select Your Organization : </td>
+                                    <td>
+                                        <select onchange="generate_scope_report(this.value)">
+
+                                            <?php
+                                            $ses_sql1 = mysql_query("select * from user_login where username='$login_session'", $conn);
+                                            $row1 = mysql_fetch_assoc($ses_sql1);
+                                            $result1 = $row1['user_id'];
+
+                                            $sql = mysql_query("select * from user_has_user_type where user_id='$result1'", $conn);
+                                            $row2 = mysql_fetch_assoc($sql);
+                                            $result2 = $row2['user_type_id'];
+
+                                            $sql1 = mysql_query("select * from user_types where user_type_id='$result2'", $conn);
+                                            $row3 = mysql_fetch_assoc($sql1);
+                                            $result3 = $row3['user_type'];
 
 
-                            <div class="demo-info" style="margin-bottom:10px">
-                                <div class="demo-tip icon-tip">&nbsp;</div>
+                                            if ($result3 == "Admin") {
 
-                                <div>
-                                  <h4>Select the field and change the status.</h4>
-                                    <?php
-                                   
+                                                $query = "SELECT org_id, org_name FROM organization where user_id='$result1'";
+                                                $result = mysql_query($query);
+                                                while ($nt = mysql_fetch_array($result)) {
+                                                    ?>
 
-                                    $ses_sql1 = mysql_query("select * from user_login where username='$login_session'", $conn);
-                                    $row1 = mysql_fetch_assoc($ses_sql1);
-                                    $result1 = $row1['user_id'];
+                                                    <option value=<?php echo $nt['org_id']; ?> ><?php echo $nt['org_name']; ?></option>;
 
-                                    $sql = mysql_query("select * from user_has_user_type where user_id='$result1'", $conn);
-                                    $row2 = mysql_fetch_assoc($sql);
-                                    $result2 = $row2['user_type_id'];
-
-                                    $sql1 = mysql_query("select * from user_types where user_type_id='$result2'", $conn);
-                                    $row3 = mysql_fetch_assoc($sql1);
-                                    $result3 = $row3['user_type'];
-
-                                    if ($result3 == "Admin") {
-
-                                        $query = "SELECT org_id, org_name FROM organization where user_id='$result1'";
-
-                                        echo "<form method='POST' action='#'>";
-                                        /* You can add order by clause to the sql statement if the names are to be displayed in alphabetical order */
-                                        $result = mysql_query($query);
-                                        echo "<select name='selected' value=''></option>";
-// printing the list box select command
-                                        while ($nt = mysql_fetch_array($result)) {//Array or records stored in $nt
-                                            echo "<option value=$nt[org_id]>$nt[org_name]</option>";
-                                            /* Option values are added by looping through the array */
-                                        }
-                                        echo "</select>"; // Closing of list box    
-
-                                        echo "<input type='submit' class='btn btn-primary' value='Submit'>";
-                                        echo "</form>";
-                                    } else {
-                                        $sql2 = mysql_query("select * from user_has_sub_user where sub_user_id='$result1'", $conn);
-                                        $row4 = mysql_fetch_assoc($sql2);
-                                        $result4 = $row4['user_id'];
-
-                                        $query = "SELECT org_id, org_name FROM organization where user_id='$result4'";
-
-                                        echo "<form method='POST' action='#'>";
-                                        /* You can add order by clause to the sql statement if the names are to be displayed in alphabetical order */
-                                        $result = mysql_query($query);
-                                        echo "<select name='selected' value=''></option>";
-// printing the list box select command
-                                        while ($nt = mysql_fetch_array($result)) {//Array or records stored in $nt
-                                            echo "<option value=$nt[org_id]>$nt[org_name]</option>";
-                                            /* Option values are added by looping through the array */
-                                        }
-                                        echo "</select>"; // Closing of list box    
-
-                                        echo "<input type='submit' class='btn btn-primary' value='Submit'>";
-                                        echo "</form>";
-                                    }
-                                    ?>
-                                </div>
-
-                                <div>
-                                    <?php
-                                    if ($_POST["selected"] != null) {
-                                        $value = $_POST["selected"];
-
-                                        $_SESSION["value"] = $value; // The value is stored in session , it can be used in
-                                        $session = $_SESSION["value"];
-
-                                        $org = mysql_query("select * from organization where org_id='$session'", $conn);
-                                        $org_result = mysql_fetch_assoc($org);
-                                        ?>
-
-                                        <center>
-                                            <a target="_blank" href="Organization_Completion_Report.php?org_id=<?php echo $session; ?>"><input type='button' class='btn btn-primary' value='<?php echo $org_result['org_name']; ?> Implementation Report'></a>
-                                            <a target="_blank" href="what_are_the_completed.php?org_id=<?php echo $session; ?>"><input type='button' class='btn btn-primary' value='<?php echo $org_result['org_name']; ?> Completion Report'></a>
-                                            <h3><?php echo $org_result['org_name']; ?></h3>  Organization
-
-                                        </center>
-                                        <?php
-                                    } else {
-                                        
-                                    }
-                                    ?>
-                                </div>
-
-                            </div>
-
-                            <table id="dg" title="Mandatory requirement for the ISMS" class="easyui-datagrid" style="width:auto;height:350px"
-                                   url="get_users.php"
-                                   toolbar="#toolbar" pagination="true"
-                                   rownumbers="true" fitColumns="true" singleSelect="true">
-                                <thead>
-                                    <tr>
-                                        <th field="ISO_clause" width="8%" scope="row">ISO Clause</th>
-                                        <th field="ISMS" width="60%" scope="row">ISMS</th>
-                                        <th field="status" width="10%" scope="row">Status</th>
-                                        <th field="comments" width="30%" scope="row">Comments</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                            <div id="toolbar">
-
-                                <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Change Status</a>
-
-                            </div>
-
-                            <div id="dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px"
-                                 closed="true" buttons="#dlg-buttons">
-                                <div class="ftitle">Mandatory requirement for the ISMS</div>
-                                <form id="fm" method="post" novalidate>
-
-                                    <div class="fitem">
-                                        <label>status:</label>
-                                        <select name="status"><option value="1">Not implemented</option>
-                                            <option value="2">Partially implemented</option>
-                                            <option value="3">Fully implemented</option>
+                                                    <?php
+                                                }
+                                            } else {
+                                                
+                                            }
+                                            ?>
                                         </select>
-                                    </div>
-                                    <div class="fitem">
-                                        <label>comments:</label>
-                                        <input name="comments">
-                                    </div>
-                                </form>
-                            </div>
-                            <div id="dlg-buttons">
-                                <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">Save</a>
-                                <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
-                            </div>
+                                    </td>
+                                </tr>
+                            </table>
 
                             <!-- /.inner -->
+                        </div>
+                        <br />
+                        <div id="search_result_scope_report">
+                            
                         </div>
                         <!-- /.row-fluid -->
                     </div>
@@ -706,5 +560,50 @@
             <!-- /#helpModal -->
 
         </div>
+        <script src="../dist/easypiechart.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var chart = window.chart = new EasyPieChart(document.querySelector('span4'), {
+                    easing: 'easeOutElastic',
+                    lineWidth: 10,
+                    delay: 6000,
+                    onStep: function(from, to, percent) {
+                        this.el.children[0].innerHTML = Math.round(percent);
+                    }
+                });
+
+
+
+            });
+	
+            document.addEventListener('DOMContentLoaded', function() {
+                var chart = window.chart = new EasyPieChart(document.querySelector('span2'), {
+                    easing: 'easeOutElastic',
+                    lineWidth: 10,
+                    delay: 6000,
+			
+                    onStep: function(from, to, percent) {
+                        this.el.children[0].innerHTML = Math.round(percent);
+                    }
+                });
+
+
+
+            });
+            document.addEventListener('DOMContentLoaded', function() {
+                var chart = window.chart = new EasyPieChart(document.querySelector('span3'), {
+                    easing: 'easeOutElastic',
+                    lineWidth: 10,
+                    delay: 6000,
+			
+                    onStep: function(from, to, percent) {
+                        this.el.children[0].innerHTML = Math.round(percent);
+                    }
+                });
+
+
+
+            });
+        </script>
     </body>
 </html>

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include '../conn.php';
 include('../session.php');
 
@@ -104,7 +104,7 @@ $count = ((118 - ($value + $value2 + $value3)) / 118 ) * 100;
                 $.ajaxSetup ({
                     cache: false
                 });
-                alert("awaaaaaaaa");
+               
                 document.getElementById("result_save_user").innerHTML = "Loading Please Wait...";
                 var first_name=document.getElementById("first_name").value;
                 var last_name=document.getElementById("last_name").value;
@@ -112,9 +112,9 @@ $count = ((118 - ($value + $value2 + $value3)) / 118 ) * 100;
                 var email=document.getElementById("email").value;
                 var username=document.getElementById("username").value;
                 var new_password=document.getElementById("new_password").value;
-                alert(new_password);
+               
                 var user_type=document.getElementById("user_type").value;
-                alert(user_type);
+                
                 
                 if(first_name=="" || last_name=="" || contact_no=="" || email==""){
                     alert("Please Enter Full Details");
@@ -131,7 +131,6 @@ $count = ((118 - ($value + $value2 + $value3)) / 118 ) * 100;
                         user_type:user_type
     
                     },function(res){
-                        alert(res);
                         if(res == "success"){
                             alert("Successfuly Saved");
                         }else {
@@ -292,10 +291,7 @@ $count = ((118 - ($value + $value2 + $value3)) / 118 ) * 100;
                             <div class="nav-collapse collapse">
                                 <!-- .nav -->
                                 <ul class="nav">
-                                    <li><a href="#">Dashboard</a></li>
-                                    <li><a href="#">Tables</a></li>
-                                    <li><a href="#">File Manager</a></li>
-
+                                    
                                     <?php if ($result3 == "Admin") { ?>
                                         <li class="dropdown ">
                                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -303,7 +299,7 @@ $count = ((118 - ($value + $value2 + $value3)) / 118 ) * 100;
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="#" onclick="create_user_registration()">Create User</a></li>
-                                                <li><a href="#" onclick="delete_user()">Delete User</a></li>
+                                                <li><a href="../user_management/delete_user.php" >Delete User</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown ">
@@ -312,6 +308,7 @@ $count = ((118 - ($value + $value2 + $value3)) / 118 ) * 100;
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="../Full_Report.php" target="_blank">Implementation Report</a></li>
+                                                <li><a href="../user_management/scope_report.php" >All Report</a></li>
                                             </ul>
                                         </li>
                                         
@@ -356,7 +353,7 @@ $count = ((118 - ($value + $value2 + $value3)) / 118 ) * 100;
                     <div class="container-fluid">
                         <div class="row-fluid">
                             <div class="span12">
-                                <h3><i class="icon-check-empty"></i> Asset Register</h3>
+                                <h3><i class="icon-check-empty"></i> Dashboard</h3>
                             </div>
                         </div>
                         <!-- /.row-fluid -->
@@ -401,7 +398,7 @@ $count = ((118 - ($value + $value2 + $value3)) / 118 ) * 100;
                 <ul id="menu" class="unstyled accordion collapse in">
                     <li class="accordion-group active">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#dashboard-nav">
-                            <i class="icon-dashboard icon-large"></i> Dashboard <span
+                            <i ></i> Dashboard <span
                                 class="label label-inverse pull-right">2</span>
                         </a>
                         <ul class="collapse" id="dashboard-nav">
@@ -409,14 +406,25 @@ $count = ((118 - ($value + $value2 + $value3)) / 118 ) * 100;
                             <li><a href="#"><i class="icon-angle-right"></i> Alternative Style</a></li>
                         </ul>
                     </li>
-                    <li><a href="../scope/scope.php"><i class="icon-table icon-large"></i> Scope</a></li>
+                    <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#error-nav">
+                            <i></i> Organization <span
+                                class="label label-inverse pull-right">2</span>
+                        </a>
+                        <ul class="collapse" id="error-nav">
+                            <li><a href="../organization/company.php"><i class="icon-angle-right"></i> Organization Data</a></li>
+                            <li><a href="#"><i class="icon-angle-right"></i> Other Details </a></li>
+
+                        </ul>
+                    </li>
+                    <li><a href="../scope/scope.php"><i></i> Scope</a></li>
                     <li class="accordion-groups">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
-                            <i class="icon-tasks icon-large"></i>Asset Register <span
+                            <i ></i>Asset Register <span
                                 class="label label-inverse pull-right">8</span>
                         </a>
                         <ul class="collapse " id="component-nav">
-                           <!-- <li><a href="../business_db/business_asset.php"><i class="icon-angle-right"></i> Business Database </a></li>
+                           <li><a href="../business_db/business_asset.php"><i class="icon-angle-right"></i> Business Database </a></li>
                             <li><a href="../digital_asset/digital_asset.php"><i class="icon-angle-right"></i> Digital Asset</a></li>
                             <li><a href="#"><i class="icon-angle-right"></i> Source Code</a></li>
                             <li><a href="#"><i class="icon-angle-right"></i> Software</a></li>
@@ -427,28 +435,29 @@ $count = ((118 - ($value + $value2 + $value3)) / 118 ) * 100;
                             <li><a href="#"><i class="icon-angle-right"></i> Laptops</a></li>
                             <li><a href="#"><i class="icon-angle-right"></i> Media</a></li>
                             <li><a href="#"><i class="icon-angle-right"></i> Support Utilities</a></li>
--->
+
                         </ul>
                     </li>
 
 
 
-                    <li><a href="#"><i class="icon-file icon-large"></i> Risk Assestment </a></li>
-                    <li class="accordion-group"><a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#soa-nav" > <i class="icon-tasks icon-large"></i>Statement of Applicability <span
+                    <li><a href="#"><i ></i> Risk Assestment </a></li>
+                    <li class="accordion-group"><a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#soa-nav" > <i></i>Statement of Applicability <span
                                 class="label label-inverse pull-right">2</span> </a>
                         <ul class="collapse " id="soa-nav">
                             <li><a href="../SOA/isms.php"><i class="icon-angle-right"></i> ISMS Mandatory</a></li>
                             <li><a href="#"><i class="icon-angle-right"></i> Support Utilities</a></li>
                         </ul>
                     </li>
+                    
                     <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#error-nav">
-                            <i class="icon-warning-sign icon-large"></i> Organisation <span
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#er-nav">
+                            <i></i> User Management <span
                                 class="label label-inverse pull-right">2</span>
                         </a>
-                        <ul class="collapse" id="error-nav">
-                            <li><a href="../organization/company.php"><i class="icon-angle-right"></i> Organisation Data</a></li>
-                            <li><a href="#"><i class="icon-angle-right"></i> Other Details </a></li>
+                        <ul class="collapse" id="er-nav">
+                            <li><a onclick="create_user_registration()"><i class="icon-angle-right"></i> Create User</a></li>
+                            <li><a href="../user_management/delete_user.php"><i class="icon-angle-right"></i> Edit User </a></li>
 
                         </ul>
                     </li>

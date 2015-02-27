@@ -1,9 +1,9 @@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--[if lt IE 7]>       <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>          <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>          <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->  <html class="no-js"> <!--<![endif]-->
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -38,16 +38,16 @@
         <script type="text/javascript">
             var url;
             function newUser(){
-                $('#dlg').dialog('open').dialog('setTitle','New Asset');
+                $('#dlg').dialog('open').dialog('setTitle','Create New User');
                 $('#fm').form('clear');
                 url = 'save_user.php';
             }
             function editUser(){
                 var row = $('#dg').datagrid('getSelected');
                 if (row){
-                    $('#dlg').dialog('open').dialog('setTitle','Edit Asset');
+                    $('#dlg').dialog('open').dialog('setTitle','Edit User');
                     $('#fm').form('load',row);
-                    url = 'update_user.php?id='+row.id;
+                    url = 'update_user.php?user_id='+row.user_id;
                 }
             }
             function saveUser(){
@@ -73,9 +73,9 @@
             function removeUser(){
                 var row = $('#dg').datagrid('getSelected');
                 if (row){
-                    $.messager.confirm('Confirm','Are you sure you want to remove this asset?',function(r){
+                    $.messager.confirm('Confirm','Are you sure you want to remove this User?',function(r){
                         if (r){
-                            $.post('remove_user.php',{id:row.id},function(result){
+                            $.post('remove_user.php',{user_id:row.user_id},function(result){
                                 if (result.success){
                                     $('#dg').datagrid('reload');	// reload the user data
                                 } else {
@@ -89,8 +89,6 @@
                     });
                 }
             }
-           
-            
         </script>
         <script type="text/javascript">
             
@@ -141,7 +139,6 @@
                 $.ajaxSetup ({
                     cache: false
                 });
-               
                 document.getElementById("result_save_user").innerHTML = "Loading Please Wait...";
                 var first_name=document.getElementById("first_name").value;
                 var last_name=document.getElementById("last_name").value;
@@ -168,6 +165,7 @@
                         user_type:user_type
     
                     },function(res){
+                       
                         if(res == "success"){
                             alert("Successfuly Saved");
                         }else {
@@ -238,14 +236,12 @@
         </script>
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+                <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if IE 7]>
-        <link type="text/css" rel="stylesheet" href="../assets/Font-awesome/css/font-awesome-ie7.min.css"/>
-        <![endif]-->
-
+                <link type="text/css" rel="stylesheet" href="../assets/Font-awesome/css/font-awesome-ie7.min.css"/>
+                <![endif]-->
 
         <!-- from my works -->
-
 
         <style type="text/css">
             #fm {
@@ -272,8 +268,8 @@
         <!-- end of from my works -->
 
     </head>
-    <body >
-       <?php
+    <body>
+ <?php
         include '../conn.php';
         include '../session.php';
         
@@ -358,7 +354,7 @@
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="#" onclick="create_user_registration()">Create User</a></li>
-                                                <li><a href="#" onclick="delete_user()">Delete User</a></li>
+                                                <li><a href="../organization/company.php" onclick="delete_user()">Delete User</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown ">
@@ -411,7 +407,7 @@
                     <div class="container-fluid">
                         <div class="row-fluid">
                             <div class="span12">
-                                <h3><i class="icon-check-empty"></i> Statement of Applicability </h3>
+                                <h3><i class="icon-check-empty"></i> User Management</h3>
                             </div>
                         </div>
                         <!-- /.row-fluid -->
@@ -464,13 +460,13 @@
                             <li><a href="#"><i class="icon-angle-right"></i> Alternative Style</a></li>
                         </ul>
                     </li>
-                    <li class="accordion-group ">
+                    <li class="accordion-group">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#error-nav">
-                            <i></i> Organisation <span
+                            <i></i> Organization <span
                                 class="label label-inverse pull-right">2</span>
                         </a>
                         <ul class="collapse" id="error-nav">
-                            <li><a href="../organization/company.php"><i class="icon-angle-right"></i> Organisation Data</a></li>
+                            <li><a href="../organization/company.php"><i class="icon-angle-right"></i> Organization Data</a></li>
                             <li><a href="#"><i class="icon-angle-right"></i> Other Details </a></li>
 
                         </ul>
@@ -500,7 +496,7 @@
 
 
                     <li><a href="#"><i ></i> Risk Assestment </a></li>
-                    <li class="accordion-group active"><a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#soa-nav" > <i></i>Statement of Applicability <span
+                    <li class="accordion-group"><a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#soa-nav" > <i></i>Statement of Applicability <span
                                 class="label label-inverse pull-right">2</span> </a>
                         <ul class="collapse " id="soa-nav">
                             <li><a href="../SOA/isms.php"><i class="icon-angle-right"></i> ISMS Mandatory</a></li>
@@ -508,7 +504,7 @@
                         </ul>
                     </li>
                     
-                    <li class="accordion-group ">
+                    <li class="accordion-group active">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#er-nav">
                             <i></i> User Management <span
                                 class="label label-inverse pull-right">2</span>
@@ -524,167 +520,85 @@
                 <!-- /#menu -->
 
             </div>
-            <!-- /#left -->
+            <!-- /#left --> 
 
             <!-- #content -->
-            <div id="content" class="">
+            <div id="content" class=""> 
                 <!-- .outer -->
                 <div class="container-fluid outer">
-                    <div class="row-fluid">
+                    <div class="row-fluid"> 
                         <!-- .inner -->
-                        <div class="span12 inner">
+                        <div class="span12 inner"> 
                             <!-- content is here -->
-                            <h2>Mandatory requirement for the ISMS</h2>
-
-
+                            <h2>Edit User</h2>
                             <div class="demo-info" style="margin-bottom:10px">
                                 <div class="demo-tip icon-tip">&nbsp;</div>
-
-                                <div>
-                                  <h4>Select the field and change the status.</h4>
-                                    <?php
-                                   
-
-                                    $ses_sql1 = mysql_query("select * from user_login where username='$login_session'", $conn);
-                                    $row1 = mysql_fetch_assoc($ses_sql1);
-                                    $result1 = $row1['user_id'];
-
-                                    $sql = mysql_query("select * from user_has_user_type where user_id='$result1'", $conn);
-                                    $row2 = mysql_fetch_assoc($sql);
-                                    $result2 = $row2['user_type_id'];
-
-                                    $sql1 = mysql_query("select * from user_types where user_type_id='$result2'", $conn);
-                                    $row3 = mysql_fetch_assoc($sql1);
-                                    $result3 = $row3['user_type'];
-
-                                    if ($result3 == "Admin") {
-
-                                        $query = "SELECT org_id, org_name FROM organization where user_id='$result1'";
-
-                                        echo "<form method='POST' action='#'>";
-                                        /* You can add order by clause to the sql statement if the names are to be displayed in alphabetical order */
-                                        $result = mysql_query($query);
-                                        echo "<select name='selected' value=''></option>";
-// printing the list box select command
-                                        while ($nt = mysql_fetch_array($result)) {//Array or records stored in $nt
-                                            echo "<option value=$nt[org_id]>$nt[org_name]</option>";
-                                            /* Option values are added by looping through the array */
-                                        }
-                                        echo "</select>"; // Closing of list box    
-
-                                        echo "<input type='submit' class='btn btn-primary' value='Submit'>";
-                                        echo "</form>";
-                                    } else {
-                                        $sql2 = mysql_query("select * from user_has_sub_user where sub_user_id='$result1'", $conn);
-                                        $row4 = mysql_fetch_assoc($sql2);
-                                        $result4 = $row4['user_id'];
-
-                                        $query = "SELECT org_id, org_name FROM organization where user_id='$result4'";
-
-                                        echo "<form method='POST' action='#'>";
-                                        /* You can add order by clause to the sql statement if the names are to be displayed in alphabetical order */
-                                        $result = mysql_query($query);
-                                        echo "<select name='selected' value=''></option>";
-// printing the list box select command
-                                        while ($nt = mysql_fetch_array($result)) {//Array or records stored in $nt
-                                            echo "<option value=$nt[org_id]>$nt[org_name]</option>";
-                                            /* Option values are added by looping through the array */
-                                        }
-                                        echo "</select>"; // Closing of list box    
-
-                                        echo "<input type='submit' class='btn btn-primary' value='Submit'>";
-                                        echo "</form>";
-                                    }
-                                    ?>
-                                </div>
-
-                                <div>
-                                    <?php
-                                    if ($_POST["selected"] != null) {
-                                        $value = $_POST["selected"];
-
-                                        $_SESSION["value"] = $value; // The value is stored in session , it can be used in
-                                        $session = $_SESSION["value"];
-
-                                        $org = mysql_query("select * from organization where org_id='$session'", $conn);
-                                        $org_result = mysql_fetch_assoc($org);
-                                        ?>
-
-                                        <center>
-                                            <a target="_blank" href="Organization_Completion_Report.php?org_id=<?php echo $session; ?>"><input type='button' class='btn btn-primary' value='<?php echo $org_result['org_name']; ?> Implementation Report'></a>
-                                            <a target="_blank" href="what_are_the_completed.php?org_id=<?php echo $session; ?>"><input type='button' class='btn btn-primary' value='<?php echo $org_result['org_name']; ?> Completion Report'></a>
-                                            <h3><?php echo $org_result['org_name']; ?></h3>  Organization
-
-                                        </center>
-                                        <?php
-                                    } else {
-                                        
-                                    }
-                                    ?>
-                                </div>
-
+                                <div>Identify your users </div>
                             </div>
-
-                            <table id="dg" title="Mandatory requirement for the ISMS" class="easyui-datagrid" style="width:auto;height:350px"
-                                   url="get_users.php"
+                            <table id="dg" title="Edit User" class="easyui-datagrid" style="width:auto;height:250px"
+                                   url="search_result_user_type_users.php"
                                    toolbar="#toolbar" pagination="true"
                                    rownumbers="true" fitColumns="true" singleSelect="true">
                                 <thead>
                                     <tr>
-                                        <th field="ISO_clause" width="8%" scope="row">ISO Clause</th>
-                                        <th field="ISMS" width="60%" scope="row">ISMS</th>
-                                        <th field="status" width="10%" scope="row">Status</th>
-                                        <th field="comments" width="30%" scope="row">Comments</th>
+                                        <th field="firstname" width="15%" scope="row">First Name</th>
+                                        <th field="lastname" width="50%" scope="row">Last Name</th>
+                                        <th field="phone" width="10%" scope="row">Phone</th>
+                                        <th field="email" width="25%" scope="row">Email</th>
                                     </tr>
                                 </thead>
                             </table>
-                            <div id="toolbar">
-
-                                <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Change Status</a>
+                            <div id="toolbar"> 
+                                <?php if ($result3 == "Admin") { ?>
+                                    <!--<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()"> Add New</a> -->
+                                    <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit</a> 
+                                    <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">Remove</a> 
+                                <?php } else { ?>
+                                    
+                                <?php } ?>
 
                             </div>
-
                             <div id="dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px"
                                  closed="true" buttons="#dlg-buttons">
-                                <div class="ftitle">Mandatory requirement for the ISMS</div>
+                                <div class="ftitle">Edit User</div>
                                 <form id="fm" method="post" novalidate>
-
                                     <div class="fitem">
-                                        <label>status:</label>
-                                        <select name="status"><option value="1">Not implemented</option>
-                                            <option value="2">Partially implemented</option>
-                                            <option value="3">Fully implemented</option>
-                                        </select>
+                                        <label>First Name</label>
+                                        <input name="firstname" class="easyui-validatebox" >
                                     </div>
                                     <div class="fitem">
-                                        <label>comments:</label>
-                                        <input name="comments">
+                                        <label>Last Name</label>
+                                        <input name="lastname" class="easyui-validatebox" >
+                                    </div>
+                                    <div class="fitem">
+                                        <label>Phone</label>
+                                        <input name="phone" class="easyui-validatebox" >
+                                    </div>
+                                    <div class="fitem">
+                                        <label>Email</label>
+                                        <input name="email" class="easyui-validatebox">
                                     </div>
                                 </form>
                             </div>
-                            <div id="dlg-buttons">
-                                <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">Save</a>
-                                <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
-                            </div>
+                            <div id="dlg-buttons"> <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">Save</a> <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a> </div>
 
-                            <!-- /.inner -->
+                            <!-- /.inner --> 
                         </div>
-                        <!-- /.row-fluid -->
+                        <!-- /.row-fluid --> 
                     </div>
-                    <!-- /.outer -->
+                    <!-- /.outer --> 
                 </div>
-                <!-- /#content -->
+                <!-- /#content --> 
                 <!-- #push do not remove -->
                 <div id="push"></div>
-                <!-- /#push -->
+                <!-- /#push --> 
             </div>
             <!-- /#wrap -->
 
             <div class="clearfix"></div>
             <div id="footer">
-                <p>2015 © Softcare Apps</p>
+                <p>2013 © Softcare Apps</p>
             </div>
-
 
             <!-- #helpModal -->
             <div id="helpModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel"
@@ -694,16 +608,13 @@
                     <h3 id="helpModalLabel"><i class="icon-external-link"></i> Help</h3>
                 </div>
                 <div class="modal-body">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
+                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
                 </div>
                 <div class="modal-footer">
-
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                 </div>
             </div>
-            <!-- /#helpModal -->
+            <!-- /#helpModal --> 
 
         </div>
     </body>
