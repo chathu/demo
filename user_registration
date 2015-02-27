@@ -28,7 +28,7 @@ if ($results) {
             $sql3 = "INSERT INTO user_login (username, password, is_active, user_id) VALUES ('$username','$new_password','true','$user_id')";
             $results4 = @mysql_query($sql3);
             if ($results4) {
-                echo 'success';
+                echo 'if success';
             } else {
                 
             }
